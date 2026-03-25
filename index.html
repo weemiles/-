@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SPOREX × VRINK 영업 제안서</title>
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --bg:       #f8f9fb;
+      --card:     #ffffff;
+      --blue:     #3182F6;
+      --blue-50:  #eff6ff;
+      --blue-100: #dbeafe;
+      --gray-900: #111827;
+      --gray-800: #1f2937;
+      --gray-700: #374151;
+      --gray-600: #4b5563;
+      --gray-500: #6b7280;
+      --gray-400: #9ca3af;
+      --gray-300: #d1d5db;
+      --gray-200: #e5e7eb;
+      --gray-100: #f3f4f6;
+      --red:      #ef4444;
+      --red-50:   #fef2f2;
+      --red-100:  #fee2e2;
+      --left-w:   480px;
+      --gap:      72px;
+      --slide-pad:56px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Pretendard Variable', 'Pretendard', -apple-system, sans-serif;
+      background: #ffffff;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0;
+      width: calc(var(--gap) + var(--left-w) + var(--gap) / 2);
+      height: 100%;
+      background: var(--bg);
+      z-index: 0;
+    }
+
+    /* ── 슬라이드 전환 ── */
+    .slide {
+      position: absolute; top: 0; left: 0;
+      width: 100%; height: 100vh;
+      opacity: 0; transition: opacity 0.35s ease;
+      pointer-events: none; z-index: 1;
+    }
+    .slide.active { opacity: 1; pointer-events: all; }
+
+    .slide-shell {
+      width: 100%; height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      padding: var(--slide-pad);
+      position: relative; z-index: 1;
+    }
+    .inner {
+      width: 100%; max-width: 1320px;
+      display: grid;
+      grid-template-columns: var(--left-w) 1fr;
+      gap: var(--gap);
+      align-items: center;
+    }
+    .left-panel { width: var(--left-w); }
+    .left-content { padding-right: calc(var(--gap) / 2); }
+    .right-panel { flex: 1; display: flex; flex-direction: column; gap: 12px; }
+
+    /* ── 왼쪽 패널 타이포 ── */
+    .section-label { display: flex; align-items: center; gap: 8px; margin-bottom: 16px; }
+    .label-en { font-size: clamp(10px,.85vw,13px); font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--blue); }
+    .label-sep { color:var(--gray-300); font-size:clamp(10px,.85vw,13px); }
+    .label-ko  { font-size:clamp(10px,.85vw,13px); font-weight:400; color:var(--gray-400); }
+
+    .title { font-size:clamp(26px,4.2vw,60px); font-weight:700; line-height:1.12; letter-spacing:-0.025em; color:var(--gray-900); margin-bottom:24px; }
+    .divider-line { width:32px; height:2px; background:var(--blue); margin-bottom:20px; }
+    .subtitle { font-size:clamp(16px,1.7vw,24px); font-weight:700; line-height:1.3; letter-spacing:-0.015em; color:var(--gray-800); margin-bottom:12px; }
+    .body-text { font-size:clamp(12px,1.15vw,16px); font-weight:400; line-height:1.7; letter-spacing:-0.005em; color:var(--gray-600); margin-bottom:20px; }
+
+    .checks { display:flex; flex-direction:column; gap:10px; }
+    .check-item { display:flex; align-items:flex-start; gap:10px; }
+    .check-icon { width:18px; height:18px; background:var(--blue-50); border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:1px; }
+    .check-icon svg { width:10px; height:10px; }
+    .check-text { font-size:clamp(11px,1.05vw,15px); font-weight:500; line-height:1.4; color:var(--gray-600); }
+
+    /* ── 테이블 카드 ── */
+    .tbl-card { background:#fff; border:1px solid var(--gray-200); border-radius:12px; overflow:hidden; }
+    .tbl-head { display:flex; align-items:center; justify-content:space-between; padding:clamp(11px,1.3vh,14px) clamp(16px,1.4vw,20px); background:var(--gray-100); }
+    .tbl-head-title { font-size:clamp(11px,1vw,14px); font-weight:700; color:var(--gray-800); }
+    .tbl-head-badge { font-size:clamp(10px,.85vw,12px); font-weight:600; color:var(--gray-400); }
+    .tbl-col-head { display:grid; padding:clamp(7px,.9vh,9px) clamp(16px,1.4vw,20px); border-bottom:1px solid var(--gray-200); background:var(--gray-100); }
+    .col-label { font-size:clamp(10px,.85vw,11px); font-weight:700; color:var(--gray-400); letter-spacing:.06em; text-transform:uppercase; }
+    .col-label.right { text-align:right; }
+    .tbl-row { display:grid; padding:clamp(9px,1.1vh,12px) clamp(16px,1.4vw,20px); border-bottom:1px solid var(--gray-100); align-items:center; }
+    .tbl-row:last-child { border-bottom:none; }
+    .tbl-item { font-size:clamp(11px,1vw,14px); font-weight:400; color:var(--gray-600); }
+    .tbl-num  { font-size:clamp(12px,1.05vw,15px); font-weight:700; color:var(--gray-900); text-align:right; }
+    .tbl-basis { font-size:clamp(10px,.9vw,12px); font-weight:400; color:var(--gray-400); padding-left:16px; line-height:1.4; }
+    .tbl-row.result { background:var(--blue-50); border-top:1px solid var(--blue-100); border-bottom:none; }
+    .tbl-row.result .tbl-item { font-weight:700; color:var(--blue); }
+    .tbl-row.result .tbl-num  { font-size:clamp(14px,1.4vw,19px); font-weight:700; color:var(--blue); }
+    .tbl-row.result .tbl-basis { font-weight:500; color:var(--blue); opacity:.7; }
+
+    /* ── 스케일 카드 ── */
+    .scale-cards { display:flex; flex-direction:column; gap:8px; }
+    .scale-card { background:#fff; border:1px solid var(--gray-200); border-radius:12px; padding:clamp(14px,1.7vh,20px) clamp(18px,1.6vw,24px); display:flex; align-items:center; justify-content:space-between; gap:20px; }
+    .scale-card.mid  { background:var(--blue-50); border-color:var(--blue-100); }
+    .scale-card.peak { background:var(--blue); border-color:var(--blue); }
+    .scale-info { display:flex; flex-direction:column; gap:5px; flex:1; }
+    .scale-tag  { font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--gray-400); }
+    .scale-card.mid  .scale-tag  { color:var(--blue); }
+    .scale-card.peak .scale-tag  { color:rgba(255,255,255,.6); }
+    .scale-name { font-size:clamp(14px,1.3vw,17px); font-weight:700; color:var(--gray-900); }
+    .scale-card.peak .scale-name { color:#fff; }
+    .scale-desc { font-size:clamp(11px,1vw,13px); font-weight:400; color:var(--gray-400); }
+    .scale-card.mid  .scale-desc { color:var(--blue); opacity:.7; }
+    .scale-card.peak .scale-desc { color:rgba(255,255,255,.65); }
+    .scale-kpi { display:flex; flex-direction:column; align-items:flex-end; gap:2px; flex-shrink:0; }
+    .scale-period { font-size:11px; font-weight:600; color:var(--gray-400); letter-spacing:.06em; text-transform:uppercase; }
+    .scale-card.mid  .scale-period { color:var(--blue); opacity:.7; }
+    .scale-card.peak .scale-period { color:rgba(255,255,255,.6); }
+    .scale-value { font-size:clamp(22px,2.4vw,32px); font-weight:700; color:var(--gray-900); letter-spacing:-.03em; line-height:1; }
+    .scale-card.mid  .scale-value { color:var(--blue); }
+    .scale-card.peak .scale-value { color:#fff; }
+
+    /* ── 결론 배너 ── */
+    .conclusion { background:var(--blue); border-radius:12px; padding:clamp(16px,1.9vh,22px) clamp(20px,1.8vw,26px); display:flex; align-items:center; justify-content:space-between; gap:24px; }
+    .conclusion-text { display:flex; flex-direction:column; gap:4px; flex:1; }
+    .conclusion-label { font-size:clamp(10px,.85vw,12px); font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:rgba(255,255,255,.6); }
+    .conclusion-desc  { font-size:clamp(12px,1.1vw,15px); font-weight:500; color:rgba(255,255,255,.85); line-height:1.5; }
+    .conclusion-kpis  { display:flex; align-items:center; gap:24px; flex-shrink:0; }
+    .conclusion-kpi   { display:flex; flex-direction:column; align-items:flex-end; gap:2px; }
+    .conclusion-kpi-label { font-size:clamp(10px,.85vw,11px); font-weight:600; color:rgba(255,255,255,.55); letter-spacing:.06em; text-transform:uppercase; }
+    .conclusion-kpi-value { font-size:clamp(22px,2.6vw,36px); font-weight:700; color:#fff; letter-spacing:-.03em; line-height:1; }
+    .conclusion-divider { width:1px; height:40px; background:rgba(255,255,255,.2); }
+
+    /* ── 조건 칩 ── */
+    .condition-row { display:flex; gap:8px; }
+    .condition-chip { flex:1; background:var(--gray-100); border-radius:8px; padding:10px 14px; display:flex; flex-direction:column; gap:3px; }
+    .chip-label { font-size:10px; font-weight:700; color:var(--gray-400); text-transform:uppercase; letter-spacing:.06em; }
+    .chip-value { font-size:clamp(12px,1.1vw,14px); font-weight:600; color:var(--gray-800); }
+
+    /* ── 가격 비교 영역 (슬라이드 1 전용) ── */
+    .price-stack { display:flex; flex-direction:column; gap:10px; }
+    .price-row { display:grid; grid-template-columns:1fr 1fr 1.3fr; gap:10px; }
+    .price-box { background:#fff; border:1px solid var(--gray-200); border-radius:12px; padding:clamp(12px,1.5vh,18px) clamp(14px,1.4vw,20px); }
+    .price-box.faded { background:var(--gray-100); }
+    .price-box.highlight { background:var(--blue); border-color:var(--blue); }
+    .price-box-label { font-size:clamp(10px,.85vw,11px); font-weight:700; letter-spacing:.06em; text-transform:uppercase; margin-bottom:4px; }
+    .price-box.faded     .price-box-label { color:var(--gray-400); }
+    .price-box.highlight .price-box-label { color:rgba(255,255,255,.6); }
+    .price-box:not(.faded):not(.highlight) .price-box-label { color:var(--gray-500); }
+    .price-box-value { font-size:clamp(20px,2.3vw,30px); font-weight:700; letter-spacing:-0.025em; line-height:1.1; }
+    .price-box.faded     .price-box-value { color:var(--gray-400); text-decoration:line-through; }
+    .price-box.highlight .price-box-value { color:#fff; }
+    .price-box:not(.faded):not(.highlight) .price-box-value { color:var(--gray-900); }
+    .price-box-note { font-size:clamp(10px,.85vw,12px); font-weight:500; margin-top:5px; }
+    .price-box.faded     .price-box-note { color:var(--gray-400); }
+    .price-box.highlight .price-box-note { color:rgba(255,255,255,.65); }
+    .price-box:not(.faded):not(.highlight) .price-box-note { color:var(--gray-400); }
+    .price-badge { display:inline-flex; align-items:center; gap:4px; background:rgba(255,255,255,.2); border-radius:6px; padding:3px 8px; margin-top:8px; }
+    .price-badge-text { font-size:clamp(10px,.85vw,12px); font-weight:700; color:#fff; }
+
+    /* ── 플랜 테이블 (슬라이드 2 전용) ── */
+    .plan-table { background:#fff; border:1px solid var(--gray-200); border-radius:12px; overflow:hidden; }
+    .plan-table-header {
+      display:grid;
+      grid-template-columns:1.7fr 1fr 1.1fr 1.1fr 1fr;
+      background:var(--gray-100);
+      padding:clamp(8px,1vh,11px) clamp(14px,1.4vw,18px);
+      border-bottom:1px solid var(--gray-200); gap:6px;
+    }
+    .plan-th { font-size:clamp(10px,.85vw,11px); font-weight:700; color:var(--gray-400); letter-spacing:.05em; text-transform:uppercase; }
+    .plan-th.center { text-align:center; }
+    .plan-row {
+      display:grid;
+      grid-template-columns:1.7fr 1fr 1.1fr 1.1fr 1fr;
+      padding:clamp(9px,1.1vh,12px) clamp(14px,1.4vw,18px);
+      border-bottom:1px solid var(--gray-100); align-items:center; gap:6px;
+    }
+    .plan-row:last-child { border-bottom:none; }
+    .plan-row.highlight { background:var(--blue-50); border-top:1px solid var(--blue-100); }
+    .plan-cell { font-size:clamp(11px,1vw,14px); color:var(--gray-600); }
+    .plan-cell.center { text-align:center; }
+    .plan-cell.name { font-weight:700; color:var(--gray-800); }
+    .plan-cell.blue-num { font-weight:700; color:var(--blue); text-align:center; }
+    .plan-cell.old { font-size:clamp(10px,.85vw,12px); color:var(--gray-400); text-decoration:line-through; text-align:center; }
+    .plan-cell.num { font-weight:700; color:var(--gray-700); text-align:center; }
+
+    /* ── 타임라인 바 (슬라이드 4 전용) ── */
+    .progress-card { background:#fff; border:1px solid var(--gray-200); border-radius:12px; overflow:hidden; }
+    .progress-head { display:flex; align-items:center; justify-content:space-between; padding:clamp(10px,1.2vh,14px) clamp(16px,1.5vw,20px); background:var(--gray-100); border-bottom:1px solid var(--gray-200); }
+    .progress-head-title { font-size:clamp(11px,1vw,14px); font-weight:700; color:var(--gray-800); }
+    .progress-head-sub   { font-size:clamp(10px,.85vw,12px); font-weight:500; color:var(--gray-400); }
+    .progress-body { padding:clamp(14px,1.8vh,20px) clamp(16px,1.5vw,20px); display:flex; flex-direction:column; gap:9px; }
+    .progress-item { display:flex; align-items:center; gap:12px; }
+    .progress-month { font-size:clamp(11px,1vw,13px); font-weight:700; color:var(--gray-500); width:44px; flex-shrink:0; }
+    .progress-bar-wrap { flex:1; height:22px; background:var(--gray-100); border-radius:5px; overflow:hidden; }
+    .progress-bar { height:100%; border-radius:5px; display:flex; align-items:center; padding-left:10px; }
+    .progress-val { font-size:clamp(10px,.85vw,11px); font-weight:700; color:#fff; white-space:nowrap; }
+    .progress-cum { font-size:clamp(10px,.9vw,12px); font-weight:600; color:var(--gray-400); width:72px; text-align:right; flex-shrink:0; }
+
+    /* ── 네비게이션 ── */
+    .nav-btn { position:fixed; bottom:20px; background:var(--gray-100); border:1px solid var(--gray-200); border-radius:8px; padding:9px 18px; cursor:pointer; font-size:clamp(11px,1vw,13px); font-weight:600; color:var(--gray-600); z-index:100; font-family:inherit; transition:all .15s ease; }
+    .nav-btn:hover { background:var(--blue-50); border-color:var(--blue-100); color:var(--blue); }
+    .nav-prev { left:36px; }
+    .nav-next { left:116px; }
+    .slide-dots { position:fixed; bottom:24px; left:50%; transform:translateX(-50%); display:flex; gap:6px; z-index:100; }
+    .dot { width:6px; height:6px; border-radius:50%; background:var(--gray-300); cursor:pointer; transition:all .2s ease; }
+    .dot.active { background:var(--blue); width:18px; border-radius:3px; }
+    .page-num { position:fixed; bottom:28px; right:36px; font-size:clamp(10px,.85vw,12px); font-weight:600; color:var(--gray-400); letter-spacing:.06em; z-index:100; }
+
+    /* ── 긴급 배지 (슬라이드 1) ── */
+    .urgent-banner {
+      background:var(--red-50); border:1px solid var(--red-100);
+      border-radius:10px; padding:12px 18px;
+      display:flex; align-items:center; gap:12px;
+    }
+    .urgent-dot { width:8px; height:8px; border-radius:50%; background:var(--red); flex-shrink:0; animation:pulse 1.4s ease-in-out infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+    .urgent-text { font-size:clamp(11px,1.05vw,14px); font-weight:700; color:#dc2626; }
+    .urgent-sub  { font-size:clamp(10px,.9vw,12px); font-weight:500; color:#ef4444; opacity:.75; }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════
+  슬라이드 1: 지금 결정해야 하는 이유
+  메시지: 같은 기기, 지금이 최저가 — 4일 뒤 290만원 더 낸다
+══════════════════════════════════════ -->
+<div class="slide active" data-slide="1">
+  <div class="slide-shell">
+    <div class="inner">
+      <div class="left-panel">
+        <div class="left-content">
+          <div class="section-label">
+            <span class="label-en">Why Now</span>
+            <span class="label-sep">|</span>
+            <span class="label-ko">지금 결정해야 하는 이유</span>
+          </div>
+          <h1 class="title">4일 뒤<br>290만원<br>더 냅니다</h1>
+          <div class="divider-line"></div>
+          <p class="body-text">스포엑스 행사가 끝나는 순간<br>기기 가격은 590만원 → 880만원으로 복귀합니다.<br>같은 장비, 지금이 가장 싼 가격입니다.</p>
+          <div class="checks">
+            <div class="check-item">
+              <div class="check-icon">
+                <svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4 7L8 3" stroke="#3182F6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <span class="check-text">부포(배송·설치 포함) 조건</span>
+            </div>
+            <div class="check-item">
+              <div class="check-icon">
+                <svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4 7L8 3" stroke="#3182F6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <span class="check-text">계약 즉시 → 첫 달 원액 무제한 무료 제공</span>
+            </div>
+            <div class="check-item">
+              <div class="check-icon">
+                <svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4 7L8 3" stroke="#3182F6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <span class="check-text">기기값 590만원 — 운영 2개월 이내 전액 회수</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="right-panel">
+        <!-- D-4 긴급 배너 -->
+        <div class="urgent-banner">
+          <div class="urgent-dot"></div>
+          <div>
+            <div class="urgent-text">스포엑스 단 4일 한정 특별가</div>
+            <div class="urgent-sub">행사 종료 후 880만원으로 즉시 복귀</div>
+          </div>
+        </div>
+
+        <!-- 가격 3단 비교 -->
+        <div class="price-row">
+          <div class="price-box faded">
+            <div class="price-box-label">기준 판매가</div>
+            <div class="price-box-value">1,600만원</div>
+            <div class="price-box-note">정상가 (부포)</div>
+          </div>
+          <div class="price-box faded">
+            <div class="price-box-label">할인 판매가</div>
+            <div class="price-box-value">880만원</div>
+            <div class="price-box-note">일반 할인 조건</div>
+          </div>
+          <div class="price-box highlight">
+            <div class="price-box-label">스포엑스 특별가</div>
+            <div class="price-box-value">590만원</div>
+            <div class="price-box-note">단 4일 · 부포 조건</div>
+            <div class="price-badge">
+              <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1L6.2 3.8H9L6.6 5.7L7.5 8.5L5 6.9L2.5 8.5L3.4 5.7L1 3.8H3.8L5 1Z" fill="white"/></svg>
+              <span class="price-badge-text">기준가 대비 63% 절감</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 첫 달 무료 혜택 카드 -->
+        <div class="tbl-card">
+          <div class="tbl-head">
+            <span class="tbl-head-title">지금 계약 시 추가 혜택</span>
+            <span class="tbl-head-badge">스포엑스 한정</span>
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr;">
+            <div style="padding:clamp(12px,1.5vh,16px) clamp(16px,1.5vw,20px); border-right:1px solid var(--gray-100);">
+              <div style="font-size:clamp(10px,.85vw,11px);font-weight:700;color:var(--blue);letter-spacing:.06em;text-transform:uppercase;margin-bottom:5px;">1개월 무료</div>
+              <div style="font-size:clamp(12px,1.1vw,15px);font-weight:700;color:var(--gray-800);margin-bottom:3px;">원액 무제한 무료</div>
+              <div style="font-size:clamp(10px,.9vw,13px);font-weight:400;color:var(--gray-400);">잔 수 제한 없이 첫 달 완전 무료</div>
+            </div>
+            <div style="padding:clamp(12px,1.5vh,16px) clamp(16px,1.5vw,20px);">
+              <div style="font-size:clamp(10px,.85vw,11px);font-weight:700;color:var(--blue);letter-spacing:.06em;text-transform:uppercase;margin-bottom:5px;">6개월 보장</div>
+              <div style="font-size:clamp(12px,1.1vw,15px);font-weight:700;color:var(--gray-800);margin-bottom:3px;">특별 계약가 고정</div>
+              <div style="font-size:clamp(10px,.9vw,13px);font-weight:400;color:var(--gray-400);">6개월 이후 단계적 인상 (투명 구조)</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 결론 배너 -->
+        <div class="conclusion">
+          <div class="conclusion-text">
+            <span class="conclusion-label">Bottom Line · 결론</span>
+            <span class="conclusion-desc">지금 계약 = 기기 290만원 절감 + 첫 달 원액 무료</span>
+          </div>
+          <div class="conclusion-kpis">
+            <div class="conclusion-kpi">
+              <span class="conclusion-kpi-label">도입가</span>
+              <span class="conclusion-kpi-value">590<span style="font-size:.5em;font-weight:500;">만원</span></span>
+            </div>
+            <div class="conclusion-divider"></div>
+            <div class="conclusion-kpi">
+              <span class="conclusion-kpi-label">절감</span>
+              <span class="conclusion-kpi-value">63<span style="font-size:.5em;font-weight:500;">%</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+  슬라이드 2: 내 센터에 맞는 플랜
+  메시지: 규모별 선택, 스포엑스 특별가가 6개월 보장된다
+══════════════════════════════════════ -->
+<div class="slide" data-slide="2">
+  <div class="slide-shell">
+    <div class="inner">
+      <div class="left-panel">
+        <div class="left-content">
+          <div class="section-label">
+            <span class="label-en">Monthly Plan</span>
+            <span class="label-sep">|</span>
+            <span class="label-ko">원액 요금제 선택</span>
+          </div>
+          <h1 class="title">내 센터<br>규모에 맞게<br>고르면 됩니다</h1>
+          <div class="divider-line"></div>
+          <p class="body-text">4가지 플랜 중 잔 수 기준으로 선택.<br>스포엑스 특별 계약가는 기준가 대비 최대 43% 저렴하며 6개월간 고정 적용됩니다.</p>
+          <div class="checks">
+            <div class="check-item">
+              <div class="check-icon">
+                <svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4 7L8 3" stroke="#3182F6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <span class="check-text">잔당 최저 330원 (엔터프라이즈, 월 5,000잔)</span>
+            </div>
+            <div class="check-item">
+              <div class="check-icon">
+                <svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4 7L8 3" stroke="#3182F6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <span class="check-text">첫 달은 어느 플랜이든 무제한 무료</span>
+            </div>
+            <div class="check-item">
+              <div class="check-icon">
+                <svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4 7L8 3" stroke="#3182F6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <span class="check-text">중형 센터 권장 → ② 스탠다드 (월 120만원)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="right-panel">
+        <!-- 플랜 비교 테이블 -->
+        <div class="plan-table">
+          <div class="plan-table-header">
+            <span class="plan-th">플랜</span>
+            <span class="plan-th center">월 공급잔수</span>
+            <span class="plan-th center">B2B 기준가</span>
+            <span class="plan-th center">스포엑스 특별가</span>
+            <span class="plan-th center">잔당 단가</span>
+          </div>
+          <div class="plan-row">
+            <span class="plan-cell name">① 스타터</span>
+            <span class="plan-cell center">~1,000잔</span>
+            <span class="plan-cell old">120만원</span>
+            <span class="plan-cell blue-num">77만원</span>
+            <span class="plan-cell num">770원</span>
+          </div>
+          <div class="plan-row">
+            <span class="plan-cell name">② 스탠다드</span>
+            <span class="plan-cell center">~3,000잔</span>
+            <span class="plan-cell old">210만원</span>
+            <span class="plan-cell blue-num">120만원</span>
+            <span class="plan-cell num">400원</span>
+          </div>
+          <div class="plan-row">
+            <span class="plan-cell name">③ 프리미엄</span>
+            <span class="plan-cell center">~4,000잔</span>
+            <span class="plan-cell old">240만원</span>
+            <span class="plan-cell blue-num">140만원</span>
+            <span class="plan-cell num">350원</span>
+          </div>
+          <div class="plan-row highlight">
+            <span class="plan-cell name" style="color:var(--blue);">④ 엔터프라이즈</span>
+            <span class="plan-cell center">~5,000잔</span>
+            <span class="plan-cell old">290만원</span>
+            <span class="plan-cell blue-num">165만원</span>
+            <span class="plan-cell num">330원</span>
+          </div>
+        </div>
+
+        <!-- 운영 방식 안내 -->
+        <div class="tbl-card">
+          <div class="tbl-head">
+            <span class="tbl-head-title">원액, 어떻게 운영하나요?</span>
+            <span class="tbl-head-badge">운영 방식 3가지</span>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;border-top:1px solid var(--gray-100);">
+            <div style="padding:clamp(10px,1.2vh,14px) clamp(12px,1.2vw,16px);border-right:1px solid var(--gray-100);">
+              <div style="font-size:clamp(10px,.85vw,11px);font-weight:700;color:var(--gray-400);letter-spacing:.05em;text-transform:uppercase;margin-bottom:4px;">방식 A</div>
+              <div style="font-size:clamp(11px,1vw,13px);font-weight:700;color:var(--gray-800);margin-bottom:3px;">회원 무료 제공</div>
+              <div style="font-size:clamp(10px,.9vw,12px);color:var(--gray-500);line-height:1.5;">회원권 인상 + 이탈률 감소로 수익</div>
+            </div>
+            <div style="padding:clamp(10px,1.2vh,14px) clamp(12px,1.2vw,16px);border-right:1px solid var(--gray-100);">
+              <div style="font-size:clamp(10px,.85vw,11px);font-weight:700;color:var(--gray-400);letter-spacing:.05em;text-transform:uppercase;margin-bottom:4px;">방식 B</div>
+              <div style="font-size:clamp(11px,1vw,13px);font-weight:700;color:var(--gray-800);margin-bottom:3px;">옵션 판매</div>
+              <div style="font-size:clamp(10px,.9vw,12px);color:var(--gray-500);line-height:1.5;">10잔 묶음 2만원으로 직접 판매</div>
+            </div>
+            <div style="padding:clamp(10px,1.2vh,14px) clamp(12px,1.2vw,16px);">
+              <div style="font-size:clamp(10px,.85vw,11px);font-weight:700;color:var(--blue);letter-spacing:.05em;text-transform:uppercase;margin-bottom:4px;">방식 C ★권장</div>
+              <div style="font-size:clamp(11px,1vw,13px);font-weight:700;color:var(--gray-800);margin-bottom:3px;">혼합 운영</div>
+              <div style="font-size:clamp(10px,.9vw,12px);color:var(--gray-500);line-height:1.5;">A+B 절반씩, 수익 균형 최적화</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 결론 배너 -->
+        <div class="conclusion">
+          <div class="conclusion-text">
+            <span class="conclusion-label">Plan Savings · 절감 요약</span>
+            <span class="conclusion-desc">스포엑스 특별가 → 월 최대 125만원 절감, 6개월 보장</span>
+          </div>
+          <div class="conclusion-kpis">
+            <div class="conclusion-kpi">
+              <span class="conclusion-kpi-label">최대 절감</span>
+              <span class="conclusion-kpi-value">43<span style="font-size:.5em;font-weight:500;">%</span></span>
+            </div>
+            <div class="conclusion-divider"></div>
+            <div class="conclusion-kpi">
+              <span class="conclusion-kpi-label">최저 단가</span>
+              <span class="conclusion-kpi-value">330<span style="font-size:.42em;font-weight:500;">원/잔</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+  슬라이드 3: 실제로 얼마나 벌 수 있나?
+  메시지: 월 정액 120만원으로 최대 880만원 순이익
+══════════════════════════════════════ -->
+<div class="slide" data-slide="3">
+  <div class="slide-shell">
+    <div class="inner">
+      <div class="left-panel">
+        <div class="left-content">
+          <div class="section-label">
+            <span class="label-en">Revenue Simulation</span>
+            <span class="label-sep">|</span>
+            <span class="label-ko">수익 시뮬레이션</span>
+          </div>
+          <h1 class="title">월 120만원<br>내고 얼마나<br>버나요?</h1>
+          <div class="divider-line"></div>
+          <p class="body-text">② 스탠다드 플랜, 회원 500명 기준 시뮬레이션.<br>운영 방식에 따라 월 480~880만원 순이익 발생.</p>
+          <div class="checks">
+            <div class="check-item">
+              <div class="check-icon">
+                <svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4 7L8 3" stroke="#3182F6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <span class="check-text">가정: 회원권 월 1만원 인상, 이탈률 20% 감소</span>
+            </div>
+            <div class="check-item">
+              <div class="check-icon">
+                <svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4 7L8 3" stroke="#3182F6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <span class="check-text">옵션 판매: 10잔 묶음 2만원 (잔당 원가 400원)</span>
+            </div>
+            <div class="check-item">
+              <div class="check-icon">
+                <svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4 7L8 3" stroke="#3182F6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <span class="check-text">방식 A: 최고 ROI / 방식 C: 권장 균형 운영</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="right-panel">
+        <!-- 조건 칩 -->
+        <div class="condition-row">
+          <div class="condition-chip">
+            <span class="chip-label">플랜</span>
+            <span class="chip-value">② 스탠다드 (~3,000잔)</span>
+          </div>
+          <div class="condition-chip">
+            <span class="chip-label">월 정액</span>
+            <span class="chip-value">120만원</span>
+          </div>
+          <div class="condition-chip">
+            <span class="chip-label">기준 회원수</span>
+            <span class="chip-value">500명</span>
+          </div>
+        </div>
+
+        <!-- 방식별 수익 스케일 카드 -->
+        <div class="scale-cards">
+          <div class="scale-card">
+            <div class="scale-info">
+              <span class="scale-tag">방식 B · 옵션 판매만</span>
+              <span class="scale-name">10잔 묶음 2만원 직접 판매</span>
+              <span class="scale-desc">판매수익 600만원 — 정액 120만원 차감</span>
+            </div>
+            <div class="scale-kpi">
+              <span class="scale-period">월 순이익</span>
+              <span class="scale-value">+480<span style="font-size:.48em;font-weight:500;">만원</span></span>
+            </div>
+          </div>
+          <div class="scale-card mid">
+            <div class="scale-info">
+              <span class="scale-tag">방식 C · 혼합 (권장)</span>
+              <span class="scale-name">절반 무료 혜택 + 절반 옵션 판매</span>
+              <span class="scale-desc">회원권인상 250 + 이탈감소 250 + 옵션판매 300만원</span>
+            </div>
+            <div class="scale-kpi">
+              <span class="scale-period">월 순이익</span>
+              <span class="scale-value">+523<span style="font-size:.48em;font-weight:500;">만원</span></span>
+            </div>
+          </div>
+          <div class="scale-card peak">
+            <div class="scale-info">
+              <span class="scale-tag">방식 A · 전량 무료 제공</span>
+              <span class="scale-name">회원권 인상 + 이탈률 20% 감소 효과</span>
+              <span class="scale-desc">인상수익 500 + 이탈감소 500만원 = 합계 1,000만원</span>
+            </div>
+            <div class="scale-kpi">
+              <span class="scale-period">월 순이익</span>
+              <span class="scale-value">+880<span style="font-size:.48em;font-weight:500;">만원</span></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 결론 배너 -->
+        <div class="conclusion">
+          <div class="conclusion-text">
+            <span class="conclusion-label">ROI · 투자수익률</span>
+            <span class="conclusion-desc">최소 방식 B 기준도 ROI 400% — 어느 방식이든 이익</span>
+          </div>
+          <div class="conclusion-kpis">
+            <div class="conclusion-kpi">
+              <span class="conclusion-kpi-label">최대 ROI</span>
+              <span class="conclusion-kpi-value">733<span style="font-size:.5em;font-weight:500;">%</span></span>
+            </div>
+            <div class="conclusion-divider"></div>
+            <div class="conclusion-kpi">
+              <span class="conclusion-kpi-label">월 최대 순이익</span>
+              <span class="conclusion-kpi-value">880<span style="font-size:.45em;font-weight:500;">만원</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+  슬라이드 4: 6개월 후 내 통장 (클로징)
+  메시지: 기기값 2개월 회수, 6개월 누적 3,175만원
+══════════════════════════════════════ -->
+<div class="slide" data-slide="4">
+  <div class="slide-shell">
+    <div class="inner">
+      <div class="left-panel">
+        <div class="left-content">
+          <div class="section-label">
+            <span class="label-en">6-Month Projection</span>
+            <span class="label-sep">|</span>
+            <span class="label-ko">6개월 수익 예측</span>
+          </div>
+          <h1 class="title">기기값<br>2개월이면<br>회수됩니다</h1>
+          <div class="divider-line"></div>
+          <h2 class="subtitle">④ 엔터프라이즈 · 방식 C · 500명</h2>
+          <p class="body-text">590만원짜리 기기 도입 후 6개월 손익.<br>2개월째부터 수익 발생, 6개월 누적 3,175만원.</p>
+          <div class="checks">
+            <div class="check-item">
+              <div class="check-icon">
+                <svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4 7L8 3" stroke="#3182F6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <span class="check-text">1개월: 무제한 무료 — 리스크 없이 효과 검증</span>
+            </div>
+            <div class="check-item">
+              <div class="check-icon">
+                <svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4 7L8 3" stroke="#3182F6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <span class="check-text">2개월차 635만원 수익 → 기기값 590만원 완전 회수</span>
+            </div>
+            <div class="check-item">
+              <div class="check-icon">
+                <svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4 7L8 3" stroke="#3182F6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <span class="check-text">3~6개월: 매월 635만원 순수 이익</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="right-panel">
+        <!-- 진행 바 타임라인 -->
+        <div class="progress-card">
+          <div class="progress-head">
+            <span class="progress-head-title">월별 누적 순이익 추이</span>
+            <span class="progress-head-sub">엔터프라이즈 · 방식 C · 500명 기준</span>
+          </div>
+          <div class="progress-body">
+            <div class="progress-item">
+              <span class="progress-month">1개월</span>
+              <div class="progress-bar-wrap" style="background:transparent;border:1.5px dashed var(--gray-300);display:flex;align-items:center;padding:0 12px;">
+                <span style="font-size:clamp(10px,.85vw,12px);font-weight:600;color:var(--gray-400);">원액 무제한 무료 — 서비스 비용 0원</span>
+              </div>
+              <span class="progress-cum" style="color:var(--gray-300);">—</span>
+            </div>
+            <div class="progress-item">
+              <span class="progress-month">2개월</span>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar" style="width:20%;background:var(--blue-100);">
+                  <span class="progress-val" style="color:var(--blue);">635만원</span>
+                </div>
+              </div>
+              <span class="progress-cum">635만원</span>
+            </div>
+            <div class="progress-item">
+              <span class="progress-month">3개월</span>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar" style="width:40%;background:var(--blue-100);">
+                  <span class="progress-val" style="color:var(--blue);">635만원</span>
+                </div>
+              </div>
+              <span class="progress-cum">1,270만원</span>
+            </div>
+            <div class="progress-item">
+              <span class="progress-month">4개월</span>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar" style="width:60%;background:var(--blue);">
+                  <span class="progress-val">635만원</span>
+                </div>
+              </div>
+              <span class="progress-cum">1,905만원</span>
+            </div>
+            <div class="progress-item">
+              <span class="progress-month">5개월</span>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar" style="width:80%;background:var(--blue);">
+                  <span class="progress-val">635만원</span>
+                </div>
+              </div>
+              <span class="progress-cum">2,540만원</span>
+            </div>
+            <div class="progress-item">
+              <span class="progress-month" style="color:var(--blue);font-weight:700;">6개월</span>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar" style="width:100%;background:var(--blue);">
+                  <span class="progress-val">635만원</span>
+                </div>
+              </div>
+              <span class="progress-cum" style="color:var(--blue);font-weight:700;">3,175만원</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 월 손익 내역 요약 -->
+        <div class="tbl-card">
+          <div class="tbl-head">
+            <span class="tbl-head-title">월 635만원 순이익 산출 내역</span>
+            <span class="tbl-head-badge">방식 C · 엔터프라이즈 기준</span>
+          </div>
+          <div class="tbl-col-head" style="grid-template-columns:2fr 1.2fr 2.3fr;">
+            <span class="col-label">항목</span>
+            <span class="col-label right">금액</span>
+            <span class="col-label" style="padding-left:16px;">산출 근거</span>
+          </div>
+          <div class="tbl-row" style="grid-template-columns:2fr 1.2fr 2.3fr;">
+            <span class="tbl-item">서비스 비용 (월 정액)</span>
+            <span class="tbl-num" style="color:#dc2626;">-165만원</span>
+            <span class="tbl-basis">엔터프라이즈 특별계약가</span>
+          </div>
+          <div class="tbl-row" style="grid-template-columns:2fr 1.2fr 2.3fr;">
+            <span class="tbl-item">회원권 인상 + 이탈감소 수익</span>
+            <span class="tbl-num">+300만원</span>
+            <span class="tbl-basis">500명 × 1만원 × 절반 적용</span>
+          </div>
+          <div class="tbl-row" style="grid-template-columns:2fr 1.2fr 2.3fr;">
+            <span class="tbl-item">옵션 판매 수익 (절반 판매)</span>
+            <span class="tbl-num">+500만원</span>
+            <span class="tbl-basis">500잔 ÷ 10 × 2만원</span>
+          </div>
+          <div class="tbl-row result" style="grid-template-columns:2fr 1.2fr 2.3fr;">
+            <span class="tbl-item">월 순이익</span>
+            <span class="tbl-num">+635만원</span>
+            <span class="tbl-basis">6개월 누적 → 3,175만원</span>
+          </div>
+        </div>
+
+        <!-- 클로징 배너 -->
+        <div class="conclusion">
+          <div class="conclusion-text">
+            <span class="conclusion-label">Final · 최종 정리</span>
+            <span class="conclusion-desc">기기 590만원 투자 → 2개월 회수 → 이후 매월 순수익</span>
+          </div>
+          <div class="conclusion-kpis">
+            <div class="conclusion-kpi">
+              <span class="conclusion-kpi-label">6개월 누적</span>
+              <span class="conclusion-kpi-value">3,175<span style="font-size:.38em;font-weight:500;">만원</span></span>
+            </div>
+            <div class="conclusion-divider"></div>
+            <div class="conclusion-kpi">
+              <span class="conclusion-kpi-label">회수 기간</span>
+              <span class="conclusion-kpi-value">2<span style="font-size:.5em;font-weight:500;">개월</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── 네비게이션 ── -->
+<button class="nav-btn nav-prev" onclick="prevSlide()">← 이전</button>
+<button class="nav-btn nav-next" onclick="nextSlide()">다음 →</button>
+<div class="slide-dots" id="dots">
+  <div class="dot active" onclick="showSlide(1)"></div>
+  <div class="dot" onclick="showSlide(2)"></div>
+  <div class="dot" onclick="showSlide(3)"></div>
+  <div class="dot" onclick="showSlide(4)"></div>
+</div>
+<div class="page-num" id="pageNum">1 / 4</div>
+
+<script>
+  let current = 1;
+  const total = 4;
+
+  // URL 쿼리 파라미터로 초기 슬라이드 지정 (?s=2, ?s=3 ...)
+  const initSlide = parseInt(new URLSearchParams(location.search).get('s')) || 1;
+  if (initSlide >= 1 && initSlide <= total) current = initSlide;
+
+  function showSlide(n) {
+    document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+    document.querySelector('[data-slide="' + n + '"]').classList.add('active');
+    document.getElementById('pageNum').textContent = n + ' / ' + total;
+    document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === n - 1));
+    current = n;
+  }
+
+  // 초기 슬라이드 표시
+  showSlide(current);
+  function nextSlide() { if (current < total) showSlide(current + 1); }
+  function prevSlide() { if (current > 1) showSlide(current - 1); }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') nextSlide();
+    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   prevSlide();
+  });
+
+  let touchStartX = 0;
+  document.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+  document.addEventListener('touchend', e => {
+    const diff = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 60) { diff > 0 ? nextSlide() : prevSlide(); }
+  });
+
+  document.addEventListener('keydown', e => {
+    if ((e.metaKey || e.ctrlKey) && e.key === 's') {
+      e.preventDefault();
+      localStorage.setItem('sporex-sales-slide', document.body.innerHTML);
+    }
+  });
+</script>
+</body>
+</html>
