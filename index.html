@@ -192,44 +192,41 @@
     .plan-cell.old { font-size:clamp(10px,.85vw,12px); color:var(--gray-400); text-decoration:line-through; text-align:center; }
     .plan-cell.num { font-weight:700; color:var(--gray-700); text-align:center; }
 
-    /* ── 카드 할부 테이블 (슬라이드 2 전용) ── */
-    .installment-table { background:#fff; border:1px solid var(--gray-200); border-radius:12px; overflow:hidden; }
-    .installment-header {
-      display:grid;
-      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-      background:var(--gray-100);
-      padding:clamp(7px,.9vh,10px) clamp(14px,1.3vw,18px);
-      border-bottom:1px solid var(--gray-200); gap:4px;
+    /* ── 카드 할부 수수료율 전체 테이블 (슬라이드 2 전용) ── */
+    .rate-slide-shell {
+      width:100%; height:100vh;
+      display:flex; align-items:center; justify-content:center;
+      padding:clamp(32px,4vh,52px) clamp(40px,4vw,72px);
+      position:relative; z-index:2;
+      background:#fff;
     }
-    .inst-th { font-size:clamp(9px,.8vw,11px); font-weight:700; color:var(--gray-400); letter-spacing:.04em; text-transform:uppercase; text-align:center; }
-    .inst-th.left { text-align:left; }
-    .inst-row {
-      display:grid;
-      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-      padding:clamp(7px,.85vh,10px) clamp(14px,1.3vw,18px);
-      border-bottom:1px solid var(--gray-100); align-items:center; gap:4px;
+    .rate-inner { width:100%; max-width:1100px; }
+    .rate-title-area {
+      display:flex; align-items:flex-end; justify-content:space-between;
+      margin-bottom:clamp(14px,2vh,22px);
     }
-    .inst-row:last-child { border-bottom:none; }
-    .inst-row.hana-best { background:var(--blue-50); border-top:1px solid var(--blue-100); }
-    .inst-row.hana-best .inst-cell { color:var(--blue); }
-    .inst-row.hana-best .inst-month { font-weight:700; color:var(--blue); }
-    .inst-month { font-size:clamp(11px,.95vw,13px); font-weight:600; color:var(--gray-700); }
-    .inst-cell { font-size:clamp(10px,.9vw,13px); font-weight:400; color:var(--gray-600); text-align:center; }
-    .inst-cell.best { font-weight:700; color:var(--blue); }
-    .inst-cell.note { font-size:clamp(9px,.8vw,11px); color:var(--gray-400); text-align:center; }
-
-    /* ── 할부 금액 박스 ── */
-    .payment-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; }
-    .payment-box { background:#fff; border:1px solid var(--gray-200); border-radius:12px; padding:clamp(10px,1.3vh,14px) clamp(12px,1.2vw,16px); }
-    .payment-box.featured { background:var(--blue); border-color:var(--blue); }
-    .payment-period { font-size:clamp(9px,.8vw,11px); font-weight:700; letter-spacing:.06em; text-transform:uppercase; margin-bottom:3px; color:var(--gray-400); }
-    .payment-box.featured .payment-period { color:rgba(255,255,255,.6); }
-    .payment-card-name { font-size:clamp(10px,.9vw,12px); font-weight:500; color:var(--gray-500); margin-bottom:6px; }
-    .payment-box.featured .payment-card-name { color:rgba(255,255,255,.7); }
-    .payment-amount { font-size:clamp(18px,2vw,26px); font-weight:700; letter-spacing:-0.025em; line-height:1; color:var(--gray-900); }
-    .payment-box.featured .payment-amount { color:#fff; }
-    .payment-sub { font-size:clamp(9px,.8vw,11px); font-weight:400; margin-top:4px; color:var(--gray-400); }
-    .payment-box.featured .payment-sub { color:rgba(255,255,255,.65); }
+    .rate-title { font-size:clamp(20px,2.4vw,32px); font-weight:700; color:var(--gray-900); letter-spacing:-.02em; line-height:1.1; }
+    .rate-subtitle { font-size:clamp(11px,1vw,14px); font-weight:400; color:var(--gray-500); margin-top:5px; }
+    .rate-unit { font-size:clamp(10px,.85vw,13px); font-weight:600; color:var(--gray-400); border:1px solid var(--gray-200); border-radius:6px; padding:4px 10px; }
+    .rate-table { width:100%; border:1px solid var(--gray-200); border-radius:12px; overflow:hidden; }
+    .rate-row {
+      display:grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+      border-bottom:1px solid var(--gray-100);
+    }
+    .rate-row:last-child { border-bottom:none; }
+    .rate-row.header { background:var(--gray-100); border-bottom:1px solid var(--gray-200); }
+    .rate-cell {
+      padding:clamp(7px,.85vh,11px) clamp(6px,.6vw,10px);
+      font-size:clamp(11px,.95vw,14px); font-weight:400;
+      color:var(--gray-700); text-align:center;
+      border-right:1px solid var(--gray-100);
+    }
+    .rate-cell:last-child { border-right:none; }
+    .rate-cell.col-month { text-align:left; padding-left:clamp(14px,1.5vw,20px); font-weight:600; color:var(--gray-800); }
+    .rate-row.header .rate-cell { font-size:clamp(10px,.85vw,13px); font-weight:700; color:var(--gray-500); border-right:1px solid var(--gray-200); }
+    .rate-row.header .rate-cell:last-child { border-right:none; }
+    .rate-cell.hl { background:#dbeafe; color:var(--blue); font-weight:700; }
 
     /* ── 네비게이션 ── */
     .nav-btn { position:fixed; bottom:20px; background:var(--gray-100); border:1px solid var(--gray-200); border-radius:8px; padding:9px 18px; cursor:pointer; font-size:clamp(11px,1vw,13px); font-weight:600; color:var(--gray-600); z-index:100; font-family:inherit; transition:all .15s ease; }
@@ -356,12 +353,12 @@
           <div class="conclusion-kpis">
             <div class="conclusion-kpi">
               <span class="conclusion-kpi-label">도입가</span>
-              <span class="conclusion-kpi-value">590<span style="font-size:.5em;font-weight:500;">만원</span></span>
+              <span class="conclusion-kpi-value">590<span style="font-size:.5em;font-weight:500;margin-left:.2em;">만원</span></span>
             </div>
             <div class="conclusion-divider"></div>
             <div class="conclusion-kpi">
               <span class="conclusion-kpi-label">절감</span>
-              <span class="conclusion-kpi-value">63<span style="font-size:.5em;font-weight:500;">%</span></span>
+              <span class="conclusion-kpi-value">63<span style="font-size:.5em;font-weight:500;margin-left:.15em;">%</span></span>
             </div>
           </div>
         </div>
@@ -371,140 +368,200 @@
 </div>
 
 <!-- ══════════════════════════════════════
-  슬라이드 2: 카드 할부 안내
-  메시지: 590만원, 카드 할부로 부담 없이
+  슬라이드 2: 카드사별 할부 수수료율 (전체 표)
 ══════════════════════════════════════ -->
 <div class="slide" data-slide="2">
-  <div class="slide-shell">
-    <div class="inner">
-      <div class="left-panel">
-        <div class="left-content">
-          <div class="section-label">
-            <span class="label-en">Card Installment</span>
-            <span class="label-sep">|</span>
-            <span class="label-ko">카드 할부 안내</span>
-          </div>
-          <h1 class="title">월 26만원으로<br>시작하세요</h1>
-          <div class="divider-line"></div>
-          <p class="body-text">590만원 현장 특별가,<br>카드 24개월 할부 시 월 약 26만원.<br>부담 없이 시작해 운영 수익으로 빠르게 상환 가능합니다.</p>
-          <div class="checks">
-            <div class="check-item">
-              <div class="check-icon">
-                <svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4 7L8 3" stroke="#3182F6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </div>
-              <span class="check-text">하나카드 24개월 기준 — 월 약 26만원</span>
-            </div>
-            <div class="check-item">
-              <div class="check-icon">
-                <svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4 7L8 3" stroke="#3182F6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </div>
-              <span class="check-text">현대카드 36개월 기준 — 월 약 18만원</span>
-            </div>
-            <div class="check-item">
-              <div class="check-icon">
-                <svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4 7L8 3" stroke="#3182F6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </div>
-              <span class="check-text">어느 카드사든 할부로 초기 부담 최소화 가능</span>
-            </div>
-          </div>
+  <div class="rate-slide-shell">
+    <div class="rate-inner">
+      <div class="rate-title-area">
+        <div>
+          <div class="rate-title">카드사별 할부 수수료율</div>
+          <div class="rate-subtitle">2026년 기준 · 개인 신용카드 기준</div>
         </div>
+        <span class="rate-unit">[단위: %]</span>
       </div>
-      <div class="right-panel">
-        <!-- 590만원 기준 월 납입액 시나리오 -->
-        <div class="payment-row">
-          <div class="payment-box">
-            <div class="payment-period">12개월 할부</div>
-            <div class="payment-card-name">하나카드 (3.49%)</div>
-            <div class="payment-amount">51<span style="font-size:.55em;font-weight:500;">만원</span></div>
-            <div class="payment-sub">총 납입 약 610만원</div>
-          </div>
-          <div class="payment-box featured">
-            <div class="payment-period">24개월 할부</div>
-            <div class="payment-card-name">하나카드 (6.77%)</div>
-            <div class="payment-amount">26<span style="font-size:.55em;font-weight:500;">만원</span></div>
-            <div class="payment-sub">총 납입 약 630만원</div>
-          </div>
-          <div class="payment-box">
-            <div class="payment-period">36개월 할부</div>
-            <div class="payment-card-name">현대카드 (9.90%)</div>
-            <div class="payment-amount">18<span style="font-size:.55em;font-weight:500;">만원</span></div>
-            <div class="payment-sub">총 납입 약 648만원</div>
-          </div>
+      <div class="rate-table">
+        <!-- 헤더 -->
+        <div class="rate-row header">
+          <div class="rate-cell col-month">할부개월수</div>
+          <div class="rate-cell">신한</div>
+          <div class="rate-cell">삼성</div>
+          <div class="rate-cell">현대</div>
+          <div class="rate-cell">KB국민</div>
+          <div class="rate-cell">롯데</div>
+          <div class="rate-cell">BC</div>
+          <div class="rate-cell">하나</div>
+          <div class="rate-cell">농협</div>
+          <div class="rate-cell">우리</div>
         </div>
-
-        <!-- 카드사별 할부 수수료율 테이블 -->
-        <div class="installment-table">
-          <div class="tbl-head">
-            <span class="tbl-head-title">카드사별 할부 수수료율</span>
-            <span class="tbl-head-badge">2026년 기준 · 개인 신용카드 [단위: %]</span>
-          </div>
-          <div class="installment-header">
-            <span class="inst-th left">할부기간</span>
-            <span class="inst-th">신한</span>
-            <span class="inst-th">삼성</span>
-            <span class="inst-th">현대</span>
-            <span class="inst-th">하나 ★</span>
-            <span class="inst-th">KB국민</span>
-          </div>
-          <div class="inst-row">
-            <span class="inst-month">6개월</span>
-            <span class="inst-cell">3.08</span>
-            <span class="inst-cell">3.09</span>
-            <span class="inst-cell">3.38</span>
-            <span class="inst-cell best">1.84</span>
-            <span class="inst-cell">3.27</span>
-          </div>
-          <div class="inst-row">
-            <span class="inst-month">12개월</span>
-            <span class="inst-cell">5.81</span>
-            <span class="inst-cell">5.81</span>
-            <span class="inst-cell">6.46</span>
-            <span class="inst-cell best">3.49</span>
-            <span class="inst-cell">6.19</span>
-          </div>
-          <div class="inst-row">
-            <span class="inst-month">18개월</span>
-            <span class="inst-cell">8.63</span>
-            <span class="inst-cell">8.59</span>
-            <span class="inst-cell">8.50</span>
-            <span class="inst-cell best">5.13</span>
-            <span class="inst-cell">9.11</span>
-          </div>
-          <div class="inst-row hana-best">
-            <span class="inst-month">24개월</span>
-            <span class="inst-cell">11.37</span>
-            <span class="inst-cell">11.40</span>
-            <span class="inst-cell">8.50</span>
-            <span class="inst-cell best">6.77</span>
-            <span class="inst-cell">12.08</span>
-          </div>
-          <div class="inst-row">
-            <span class="inst-month">36개월</span>
-            <span class="inst-cell">16.78</span>
-            <span class="inst-cell">14.30</span>
-            <span class="inst-cell best">9.90</span>
-            <span class="inst-cell">10.04</span>
-            <span class="inst-cell">17.88</span>
-          </div>
+        <!-- 데이터 행 -->
+        <div class="rate-row">
+          <div class="rate-cell col-month">2개월</div>
+          <div class="rate-cell">0.88</div>
+          <div class="rate-cell">0.89</div>
+          <div class="rate-cell">1.13</div>
+          <div class="rate-cell">0.91</div>
+          <div class="rate-cell">0.85</div>
+          <div class="rate-cell">0.81</div>
+          <div class="rate-cell hl">0.48</div>
+          <div class="rate-cell">0.82</div>
+          <div class="rate-cell">0.81</div>
         </div>
-
-        <!-- 결론 배너 -->
-        <div class="conclusion">
-          <div class="conclusion-text">
-            <span class="conclusion-label">Installment · 할부 요점</span>
-            <span class="conclusion-desc">하나카드 24개월 기준 — 월 26만원으로 시작, 수익이 할부금을 압도</span>
-          </div>
-          <div class="conclusion-kpis">
-            <div class="conclusion-kpi">
-              <span class="conclusion-kpi-label">24개월 월납입</span>
-              <span class="conclusion-kpi-value">26<span style="font-size:.5em;font-weight:500;">만원</span></span>
-            </div>
-            <div class="conclusion-divider"></div>
-            <div class="conclusion-kpi">
-              <span class="conclusion-kpi-label">최저 수수료</span>
-              <span class="conclusion-kpi-value">6.77<span style="font-size:.45em;font-weight:500;">%</span></span>
-            </div>
-          </div>
+        <div class="rate-row">
+          <div class="rate-cell col-month">3개월</div>
+          <div class="rate-cell">1.61</div>
+          <div class="rate-cell">1.63</div>
+          <div class="rate-cell">1.84</div>
+          <div class="rate-cell">1.58</div>
+          <div class="rate-cell">1.59</div>
+          <div class="rate-cell">1.44</div>
+          <div class="rate-cell hl">1.02</div>
+          <div class="rate-cell">1.45</div>
+          <div class="rate-cell">1.44</div>
+        </div>
+        <div class="rate-row">
+          <div class="rate-cell col-month">4개월</div>
+          <div class="rate-cell">2.15</div>
+          <div class="rate-cell">2.15</div>
+          <div class="rate-cell">2.38</div>
+          <div class="rate-cell">2.11</div>
+          <div class="rate-cell">2.13</div>
+          <div class="rate-cell">1.82</div>
+          <div class="rate-cell">1.29</div>
+          <div class="rate-cell">1.91</div>
+          <div class="rate-cell">1.82</div>
+        </div>
+        <div class="rate-row">
+          <div class="rate-cell col-month">5개월</div>
+          <div class="rate-cell">2.59</div>
+          <div class="rate-cell">2.58</div>
+          <div class="rate-cell">2.86</div>
+          <div class="rate-cell">2.54</div>
+          <div class="rate-cell">2.54</div>
+          <div class="rate-cell">2.18</div>
+          <div class="rate-cell">1.56</div>
+          <div class="rate-cell">2.29</div>
+          <div class="rate-cell">2.18</div>
+        </div>
+        <div class="rate-row">
+          <div class="rate-cell col-month">6개월</div>
+          <div class="rate-cell">3.08</div>
+          <div class="rate-cell">3.09</div>
+          <div class="rate-cell">3.38</div>
+          <div class="rate-cell">3.27</div>
+          <div class="rate-cell">3.03</div>
+          <div class="rate-cell">2.68</div>
+          <div class="rate-cell">1.84</div>
+          <div class="rate-cell">2.79</div>
+          <div class="rate-cell">2.68</div>
+        </div>
+        <div class="rate-row">
+          <div class="rate-cell col-month">7개월</div>
+          <div class="rate-cell">3.52</div>
+          <div class="rate-cell">3.52</div>
+          <div class="rate-cell">3.87</div>
+          <div class="rate-cell">3.74</div>
+          <div class="rate-cell">3.50</div>
+          <div class="rate-cell">3.05</div>
+          <div class="rate-cell">2.11</div>
+          <div class="rate-cell">3.17</div>
+          <div class="rate-cell">3.05</div>
+        </div>
+        <div class="rate-row">
+          <div class="rate-cell col-month">8개월</div>
+          <div class="rate-cell">3.98</div>
+          <div class="rate-cell">3.96</div>
+          <div class="rate-cell">4.34</div>
+          <div class="rate-cell">4.21</div>
+          <div class="rate-cell">3.96</div>
+          <div class="rate-cell">3.43</div>
+          <div class="rate-cell">2.38</div>
+          <div class="rate-cell">3.57</div>
+          <div class="rate-cell">3.43</div>
+        </div>
+        <div class="rate-row">
+          <div class="rate-cell col-month">9개월</div>
+          <div class="rate-cell">4.44</div>
+          <div class="rate-cell">4.38</div>
+          <div class="rate-cell">4.84</div>
+          <div class="rate-cell">4.73</div>
+          <div class="rate-cell">4.40</div>
+          <div class="rate-cell">3.79</div>
+          <div class="rate-cell">2.65</div>
+          <div class="rate-cell">3.94</div>
+          <div class="rate-cell">3.79</div>
+        </div>
+        <div class="rate-row">
+          <div class="rate-cell col-month">10개월</div>
+          <div class="rate-cell">4.86</div>
+          <div class="rate-cell">4.93</div>
+          <div class="rate-cell">5.46</div>
+          <div class="rate-cell">5.20</div>
+          <div class="rate-cell">4.95</div>
+          <div class="rate-cell">4.36</div>
+          <div class="rate-cell">2.93</div>
+          <div class="rate-cell">4.49</div>
+          <div class="rate-cell">4.36</div>
+        </div>
+        <div class="rate-row">
+          <div class="rate-cell col-month">11개월</div>
+          <div class="rate-cell">5.26</div>
+          <div class="rate-cell">5.37</div>
+          <div class="rate-cell">5.97</div>
+          <div class="rate-cell">5.68</div>
+          <div class="rate-cell">5.39</div>
+          <div class="rate-cell">4.73</div>
+          <div class="rate-cell">3.21</div>
+          <div class="rate-cell">4.88</div>
+          <div class="rate-cell">4.73</div>
+        </div>
+        <div class="rate-row">
+          <div class="rate-cell col-month">12개월</div>
+          <div class="rate-cell">5.81</div>
+          <div class="rate-cell">5.81</div>
+          <div class="rate-cell">6.46</div>
+          <div class="rate-cell">6.19</div>
+          <div class="rate-cell">6.10</div>
+          <div class="rate-cell">5.13</div>
+          <div class="rate-cell">3.49</div>
+          <div class="rate-cell">5.35</div>
+          <div class="rate-cell">5.13</div>
+        </div>
+        <div class="rate-row">
+          <div class="rate-cell col-month">18개월</div>
+          <div class="rate-cell">8.63</div>
+          <div class="rate-cell">8.59</div>
+          <div class="rate-cell">8.50</div>
+          <div class="rate-cell">9.11</div>
+          <div class="rate-cell">7.70</div>
+          <div class="rate-cell" style="color:var(--gray-300);">—</div>
+          <div class="rate-cell">5.13</div>
+          <div class="rate-cell">8.16</div>
+          <div class="rate-cell" style="color:var(--gray-300);">—</div>
+        </div>
+        <div class="rate-row">
+          <div class="rate-cell col-month">24개월</div>
+          <div class="rate-cell">11.37</div>
+          <div class="rate-cell">11.40</div>
+          <div class="rate-cell">8.50</div>
+          <div class="rate-cell">12.08</div>
+          <div class="rate-cell">8.80</div>
+          <div class="rate-cell" style="color:var(--gray-300);">—</div>
+          <div class="rate-cell">6.77</div>
+          <div class="rate-cell">9.52</div>
+          <div class="rate-cell" style="color:var(--gray-300);">—</div>
+        </div>
+        <div class="rate-row">
+          <div class="rate-cell col-month">36개월</div>
+          <div class="rate-cell">16.78</div>
+          <div class="rate-cell">14.30</div>
+          <div class="rate-cell hl">9.90</div>
+          <div class="rate-cell">17.88</div>
+          <div class="rate-cell">11.00</div>
+          <div class="rate-cell" style="color:var(--gray-300);">—</div>
+          <div class="rate-cell">10.04</div>
+          <div class="rate-cell">15.26</div>
+          <div class="rate-cell" style="color:var(--gray-300);">—</div>
         </div>
       </div>
     </div>
@@ -624,12 +681,12 @@
           <div class="conclusion-kpis">
             <div class="conclusion-kpi">
               <span class="conclusion-kpi-label">최대 절감</span>
-              <span class="conclusion-kpi-value">43<span style="font-size:.5em;font-weight:500;">%</span></span>
+              <span class="conclusion-kpi-value">43<span style="font-size:.5em;font-weight:500;margin-left:.15em;">%</span></span>
             </div>
             <div class="conclusion-divider"></div>
             <div class="conclusion-kpi">
               <span class="conclusion-kpi-label">최저 단가</span>
-              <span class="conclusion-kpi-value">330<span style="font-size:.42em;font-weight:500;">원/잔</span></span>
+              <span class="conclusion-kpi-value">330<span style="font-size:.42em;font-weight:500;margin-left:.2em;">원/잔</span></span>
             </div>
           </div>
         </div>
