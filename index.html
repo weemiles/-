@@ -166,7 +166,7 @@
     .price-badge { display:inline-flex; align-items:center; gap:4px; background:rgba(255,255,255,.2); border-radius:6px; padding:3px 8px; margin-top:8px; }
     .price-badge-text { font-size:clamp(10px,.85vw,12px); font-weight:700; color:#fff; }
 
-    /* ── 플랜 테이블 (슬라이드 2 전용) ── */
+    /* ── 플랜 테이블 (슬라이드 3 전용) ── */
     .plan-table { background:#fff; border:1px solid var(--gray-200); border-radius:12px; overflow:hidden; }
     .plan-table-header {
       display:grid;
@@ -192,18 +192,44 @@
     .plan-cell.old { font-size:clamp(10px,.85vw,12px); color:var(--gray-400); text-decoration:line-through; text-align:center; }
     .plan-cell.num { font-weight:700; color:var(--gray-700); text-align:center; }
 
-    /* ── 타임라인 바 (슬라이드 4 전용) ── */
-    .progress-card { background:#fff; border:1px solid var(--gray-200); border-radius:12px; overflow:hidden; }
-    .progress-head { display:flex; align-items:center; justify-content:space-between; padding:clamp(10px,1.2vh,14px) clamp(16px,1.5vw,20px); background:var(--gray-100); border-bottom:1px solid var(--gray-200); }
-    .progress-head-title { font-size:clamp(11px,1vw,14px); font-weight:700; color:var(--gray-800); }
-    .progress-head-sub   { font-size:clamp(10px,.85vw,12px); font-weight:500; color:var(--gray-400); }
-    .progress-body { padding:clamp(14px,1.8vh,20px) clamp(16px,1.5vw,20px); display:flex; flex-direction:column; gap:9px; }
-    .progress-item { display:flex; align-items:center; gap:12px; }
-    .progress-month { font-size:clamp(11px,1vw,13px); font-weight:700; color:var(--gray-500); width:44px; flex-shrink:0; }
-    .progress-bar-wrap { flex:1; height:22px; background:var(--gray-100); border-radius:5px; overflow:hidden; }
-    .progress-bar { height:100%; border-radius:5px; display:flex; align-items:center; padding-left:10px; }
-    .progress-val { font-size:clamp(10px,.85vw,11px); font-weight:700; color:#fff; white-space:nowrap; }
-    .progress-cum { font-size:clamp(10px,.9vw,12px); font-weight:600; color:var(--gray-400); width:72px; text-align:right; flex-shrink:0; }
+    /* ── 카드 할부 테이블 (슬라이드 2 전용) ── */
+    .installment-table { background:#fff; border:1px solid var(--gray-200); border-radius:12px; overflow:hidden; }
+    .installment-header {
+      display:grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+      background:var(--gray-100);
+      padding:clamp(7px,.9vh,10px) clamp(14px,1.3vw,18px);
+      border-bottom:1px solid var(--gray-200); gap:4px;
+    }
+    .inst-th { font-size:clamp(9px,.8vw,11px); font-weight:700; color:var(--gray-400); letter-spacing:.04em; text-transform:uppercase; text-align:center; }
+    .inst-th.left { text-align:left; }
+    .inst-row {
+      display:grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+      padding:clamp(7px,.85vh,10px) clamp(14px,1.3vw,18px);
+      border-bottom:1px solid var(--gray-100); align-items:center; gap:4px;
+    }
+    .inst-row:last-child { border-bottom:none; }
+    .inst-row.hana-best { background:var(--blue-50); border-top:1px solid var(--blue-100); }
+    .inst-row.hana-best .inst-cell { color:var(--blue); }
+    .inst-row.hana-best .inst-month { font-weight:700; color:var(--blue); }
+    .inst-month { font-size:clamp(11px,.95vw,13px); font-weight:600; color:var(--gray-700); }
+    .inst-cell { font-size:clamp(10px,.9vw,13px); font-weight:400; color:var(--gray-600); text-align:center; }
+    .inst-cell.best { font-weight:700; color:var(--blue); }
+    .inst-cell.note { font-size:clamp(9px,.8vw,11px); color:var(--gray-400); text-align:center; }
+
+    /* ── 할부 금액 박스 ── */
+    .payment-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; }
+    .payment-box { background:#fff; border:1px solid var(--gray-200); border-radius:12px; padding:clamp(10px,1.3vh,14px) clamp(12px,1.2vw,16px); }
+    .payment-box.featured { background:var(--blue); border-color:var(--blue); }
+    .payment-period { font-size:clamp(9px,.8vw,11px); font-weight:700; letter-spacing:.06em; text-transform:uppercase; margin-bottom:3px; color:var(--gray-400); }
+    .payment-box.featured .payment-period { color:rgba(255,255,255,.6); }
+    .payment-card-name { font-size:clamp(10px,.9vw,12px); font-weight:500; color:var(--gray-500); margin-bottom:6px; }
+    .payment-box.featured .payment-card-name { color:rgba(255,255,255,.7); }
+    .payment-amount { font-size:clamp(18px,2vw,26px); font-weight:700; letter-spacing:-0.025em; line-height:1; color:var(--gray-900); }
+    .payment-box.featured .payment-amount { color:#fff; }
+    .payment-sub { font-size:clamp(9px,.8vw,11px); font-weight:400; margin-top:4px; color:var(--gray-400); }
+    .payment-box.featured .payment-sub { color:rgba(255,255,255,.65); }
 
     /* ── 네비게이션 ── */
     .nav-btn { position:fixed; bottom:20px; background:var(--gray-100); border:1px solid var(--gray-200); border-radius:8px; padding:9px 18px; cursor:pointer; font-size:clamp(11px,1vw,13px); font-weight:600; color:var(--gray-600); z-index:100; font-family:inherit; transition:all .15s ease; }
@@ -345,10 +371,151 @@
 </div>
 
 <!-- ══════════════════════════════════════
-  슬라이드 2: 내 센터에 맞는 플랜
-  메시지: 규모별 선택, 스포엑스 특별가가 6개월 보장된다
+  슬라이드 2: 카드 할부 안내
+  메시지: 590만원, 카드 할부로 부담 없이
 ══════════════════════════════════════ -->
 <div class="slide" data-slide="2">
+  <div class="slide-shell">
+    <div class="inner">
+      <div class="left-panel">
+        <div class="left-content">
+          <div class="section-label">
+            <span class="label-en">Card Installment</span>
+            <span class="label-sep">|</span>
+            <span class="label-ko">카드 할부 안내</span>
+          </div>
+          <h1 class="title">월 26만원으로<br>시작하세요</h1>
+          <div class="divider-line"></div>
+          <p class="body-text">590만원 현장 특별가,<br>카드 24개월 할부 시 월 약 26만원.<br>부담 없이 시작해 운영 수익으로 빠르게 상환 가능합니다.</p>
+          <div class="checks">
+            <div class="check-item">
+              <div class="check-icon">
+                <svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4 7L8 3" stroke="#3182F6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <span class="check-text">하나카드 24개월 기준 — 월 약 26만원</span>
+            </div>
+            <div class="check-item">
+              <div class="check-icon">
+                <svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4 7L8 3" stroke="#3182F6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <span class="check-text">현대카드 36개월 기준 — 월 약 18만원</span>
+            </div>
+            <div class="check-item">
+              <div class="check-icon">
+                <svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4 7L8 3" stroke="#3182F6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <span class="check-text">어느 카드사든 할부로 초기 부담 최소화 가능</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="right-panel">
+        <!-- 590만원 기준 월 납입액 시나리오 -->
+        <div class="payment-row">
+          <div class="payment-box">
+            <div class="payment-period">12개월 할부</div>
+            <div class="payment-card-name">하나카드 (3.49%)</div>
+            <div class="payment-amount">51<span style="font-size:.55em;font-weight:500;">만원</span></div>
+            <div class="payment-sub">총 납입 약 610만원</div>
+          </div>
+          <div class="payment-box featured">
+            <div class="payment-period">24개월 할부</div>
+            <div class="payment-card-name">하나카드 (6.77%)</div>
+            <div class="payment-amount">26<span style="font-size:.55em;font-weight:500;">만원</span></div>
+            <div class="payment-sub">총 납입 약 630만원</div>
+          </div>
+          <div class="payment-box">
+            <div class="payment-period">36개월 할부</div>
+            <div class="payment-card-name">현대카드 (9.90%)</div>
+            <div class="payment-amount">18<span style="font-size:.55em;font-weight:500;">만원</span></div>
+            <div class="payment-sub">총 납입 약 648만원</div>
+          </div>
+        </div>
+
+        <!-- 카드사별 할부 수수료율 테이블 -->
+        <div class="installment-table">
+          <div class="tbl-head">
+            <span class="tbl-head-title">카드사별 할부 수수료율</span>
+            <span class="tbl-head-badge">2026년 기준 · 개인 신용카드 [단위: %]</span>
+          </div>
+          <div class="installment-header">
+            <span class="inst-th left">할부기간</span>
+            <span class="inst-th">신한</span>
+            <span class="inst-th">삼성</span>
+            <span class="inst-th">현대</span>
+            <span class="inst-th">하나 ★</span>
+            <span class="inst-th">KB국민</span>
+          </div>
+          <div class="inst-row">
+            <span class="inst-month">6개월</span>
+            <span class="inst-cell">3.08</span>
+            <span class="inst-cell">3.09</span>
+            <span class="inst-cell">3.38</span>
+            <span class="inst-cell best">1.84</span>
+            <span class="inst-cell">3.27</span>
+          </div>
+          <div class="inst-row">
+            <span class="inst-month">12개월</span>
+            <span class="inst-cell">5.81</span>
+            <span class="inst-cell">5.81</span>
+            <span class="inst-cell">6.46</span>
+            <span class="inst-cell best">3.49</span>
+            <span class="inst-cell">6.19</span>
+          </div>
+          <div class="inst-row">
+            <span class="inst-month">18개월</span>
+            <span class="inst-cell">8.63</span>
+            <span class="inst-cell">8.59</span>
+            <span class="inst-cell">8.50</span>
+            <span class="inst-cell best">5.13</span>
+            <span class="inst-cell">9.11</span>
+          </div>
+          <div class="inst-row hana-best">
+            <span class="inst-month">24개월</span>
+            <span class="inst-cell">11.37</span>
+            <span class="inst-cell">11.40</span>
+            <span class="inst-cell">8.50</span>
+            <span class="inst-cell best">6.77</span>
+            <span class="inst-cell">12.08</span>
+          </div>
+          <div class="inst-row">
+            <span class="inst-month">36개월</span>
+            <span class="inst-cell">16.78</span>
+            <span class="inst-cell">14.30</span>
+            <span class="inst-cell best">9.90</span>
+            <span class="inst-cell">10.04</span>
+            <span class="inst-cell">17.88</span>
+          </div>
+        </div>
+
+        <!-- 결론 배너 -->
+        <div class="conclusion">
+          <div class="conclusion-text">
+            <span class="conclusion-label">Installment · 할부 요점</span>
+            <span class="conclusion-desc">하나카드 24개월 기준 — 월 26만원으로 시작, 수익이 할부금을 압도</span>
+          </div>
+          <div class="conclusion-kpis">
+            <div class="conclusion-kpi">
+              <span class="conclusion-kpi-label">24개월 월납입</span>
+              <span class="conclusion-kpi-value">26<span style="font-size:.5em;font-weight:500;">만원</span></span>
+            </div>
+            <div class="conclusion-divider"></div>
+            <div class="conclusion-kpi">
+              <span class="conclusion-kpi-label">최저 수수료</span>
+              <span class="conclusion-kpi-value">6.77<span style="font-size:.45em;font-weight:500;">%</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+  슬라이드 3: 내 센터에 맞는 플랜
+  메시지: 규모별 선택, 스포엑스 특별가가 6개월 보장된다
+══════════════════════════════════════ -->
+<div class="slide" data-slide="3">
   <div class="slide-shell">
     <div class="inner">
       <div class="left-panel">
@@ -471,281 +638,6 @@
   </div>
 </div>
 
-<!-- ══════════════════════════════════════
-  슬라이드 3: 실제로 얼마나 벌 수 있나?
-  메시지: 월 정액 120만원으로 최대 880만원 순이익
-══════════════════════════════════════ -->
-<div class="slide" data-slide="3">
-  <div class="slide-shell">
-    <div class="inner">
-      <div class="left-panel">
-        <div class="left-content">
-          <div class="section-label">
-            <span class="label-en">Revenue Simulation</span>
-            <span class="label-sep">|</span>
-            <span class="label-ko">수익 시뮬레이션</span>
-          </div>
-          <h1 class="title">월 120만원<br>내고 얼마나<br>버나요?</h1>
-          <div class="divider-line"></div>
-          <p class="body-text">② 스탠다드 플랜, 회원 500명 기준 시뮬레이션.<br>운영 방식에 따라 월 480~880만원 순이익 발생.</p>
-          <div class="checks">
-            <div class="check-item">
-              <div class="check-icon">
-                <svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4 7L8 3" stroke="#3182F6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </div>
-              <span class="check-text">가정: 회원권 월 1만원 인상, 이탈률 20% 감소</span>
-            </div>
-            <div class="check-item">
-              <div class="check-icon">
-                <svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4 7L8 3" stroke="#3182F6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </div>
-              <span class="check-text">옵션 판매: 10잔 묶음 2만원 (잔당 원가 400원)</span>
-            </div>
-            <div class="check-item">
-              <div class="check-icon">
-                <svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4 7L8 3" stroke="#3182F6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </div>
-              <span class="check-text">방식 A: 최고 ROI / 방식 C: 권장 균형 운영</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="right-panel">
-        <!-- 조건 칩 -->
-        <div class="condition-row">
-          <div class="condition-chip">
-            <span class="chip-label">플랜</span>
-            <span class="chip-value">② 스탠다드 (~3,000잔)</span>
-          </div>
-          <div class="condition-chip">
-            <span class="chip-label">월 정액</span>
-            <span class="chip-value">120만원</span>
-          </div>
-          <div class="condition-chip">
-            <span class="chip-label">기준 회원수</span>
-            <span class="chip-value">500명</span>
-          </div>
-        </div>
-
-        <!-- 방식별 수익 스케일 카드 -->
-        <div class="scale-cards">
-          <div class="scale-card">
-            <div class="scale-info">
-              <span class="scale-tag">방식 B · 옵션 판매만</span>
-              <span class="scale-name">10잔 묶음 2만원 직접 판매</span>
-              <span class="scale-desc">판매수익 600만원 — 정액 120만원 차감</span>
-            </div>
-            <div class="scale-kpi">
-              <span class="scale-period">월 순이익</span>
-              <span class="scale-value">+480<span style="font-size:.48em;font-weight:500;">만원</span></span>
-            </div>
-          </div>
-          <div class="scale-card mid">
-            <div class="scale-info">
-              <span class="scale-tag">방식 C · 혼합 (권장)</span>
-              <span class="scale-name">절반 무료 혜택 + 절반 옵션 판매</span>
-              <span class="scale-desc">회원권인상 250 + 이탈감소 250 + 옵션판매 300만원</span>
-            </div>
-            <div class="scale-kpi">
-              <span class="scale-period">월 순이익</span>
-              <span class="scale-value">+523<span style="font-size:.48em;font-weight:500;">만원</span></span>
-            </div>
-          </div>
-          <div class="scale-card peak">
-            <div class="scale-info">
-              <span class="scale-tag">방식 A · 전량 무료 제공</span>
-              <span class="scale-name">회원권 인상 + 이탈률 20% 감소 효과</span>
-              <span class="scale-desc">인상수익 500 + 이탈감소 500만원 = 합계 1,000만원</span>
-            </div>
-            <div class="scale-kpi">
-              <span class="scale-period">월 순이익</span>
-              <span class="scale-value">+880<span style="font-size:.48em;font-weight:500;">만원</span></span>
-            </div>
-          </div>
-        </div>
-
-        <!-- 결론 배너 -->
-        <div class="conclusion">
-          <div class="conclusion-text">
-            <span class="conclusion-label">ROI · 투자수익률</span>
-            <span class="conclusion-desc">최소 방식 B 기준도 ROI 400% — 어느 방식이든 이익</span>
-          </div>
-          <div class="conclusion-kpis">
-            <div class="conclusion-kpi">
-              <span class="conclusion-kpi-label">최대 ROI</span>
-              <span class="conclusion-kpi-value">733<span style="font-size:.5em;font-weight:500;">%</span></span>
-            </div>
-            <div class="conclusion-divider"></div>
-            <div class="conclusion-kpi">
-              <span class="conclusion-kpi-label">월 최대 순이익</span>
-              <span class="conclusion-kpi-value">880<span style="font-size:.45em;font-weight:500;">만원</span></span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ══════════════════════════════════════
-  슬라이드 4: 6개월 후 내 통장 (클로징)
-  메시지: 기기값 2개월 회수, 6개월 누적 3,175만원
-══════════════════════════════════════ -->
-<div class="slide" data-slide="4">
-  <div class="slide-shell">
-    <div class="inner">
-      <div class="left-panel">
-        <div class="left-content">
-          <div class="section-label">
-            <span class="label-en">6-Month Projection</span>
-            <span class="label-sep">|</span>
-            <span class="label-ko">6개월 수익 예측</span>
-          </div>
-          <h1 class="title">기기값<br>2개월이면<br>회수됩니다</h1>
-          <div class="divider-line"></div>
-          <h2 class="subtitle">④ 엔터프라이즈 · 방식 C · 500명</h2>
-          <p class="body-text">590만원짜리 기기 도입 후 6개월 손익.<br>2개월째부터 수익 발생, 6개월 누적 3,175만원.</p>
-          <div class="checks">
-            <div class="check-item">
-              <div class="check-icon">
-                <svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4 7L8 3" stroke="#3182F6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </div>
-              <span class="check-text">1개월: 무제한 무료 — 리스크 없이 효과 검증</span>
-            </div>
-            <div class="check-item">
-              <div class="check-icon">
-                <svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4 7L8 3" stroke="#3182F6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </div>
-              <span class="check-text">2개월차 635만원 수익 → 기기값 590만원 완전 회수</span>
-            </div>
-            <div class="check-item">
-              <div class="check-icon">
-                <svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4 7L8 3" stroke="#3182F6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </div>
-              <span class="check-text">3~6개월: 매월 635만원 순수 이익</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="right-panel">
-        <!-- 진행 바 타임라인 -->
-        <div class="progress-card">
-          <div class="progress-head">
-            <span class="progress-head-title">월별 누적 순이익 추이</span>
-            <span class="progress-head-sub">엔터프라이즈 · 방식 C · 500명 기준</span>
-          </div>
-          <div class="progress-body">
-            <div class="progress-item">
-              <span class="progress-month">1개월</span>
-              <div class="progress-bar-wrap" style="background:transparent;border:1.5px dashed var(--gray-300);display:flex;align-items:center;padding:0 12px;">
-                <span style="font-size:clamp(10px,.85vw,12px);font-weight:600;color:var(--gray-400);">원액 무제한 무료 — 서비스 비용 0원</span>
-              </div>
-              <span class="progress-cum" style="color:var(--gray-300);">—</span>
-            </div>
-            <div class="progress-item">
-              <span class="progress-month">2개월</span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" style="width:20%;background:var(--blue-100);">
-                  <span class="progress-val" style="color:var(--blue);">635만원</span>
-                </div>
-              </div>
-              <span class="progress-cum">635만원</span>
-            </div>
-            <div class="progress-item">
-              <span class="progress-month">3개월</span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" style="width:40%;background:var(--blue-100);">
-                  <span class="progress-val" style="color:var(--blue);">635만원</span>
-                </div>
-              </div>
-              <span class="progress-cum">1,270만원</span>
-            </div>
-            <div class="progress-item">
-              <span class="progress-month">4개월</span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" style="width:60%;background:var(--blue);">
-                  <span class="progress-val">635만원</span>
-                </div>
-              </div>
-              <span class="progress-cum">1,905만원</span>
-            </div>
-            <div class="progress-item">
-              <span class="progress-month">5개월</span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" style="width:80%;background:var(--blue);">
-                  <span class="progress-val">635만원</span>
-                </div>
-              </div>
-              <span class="progress-cum">2,540만원</span>
-            </div>
-            <div class="progress-item">
-              <span class="progress-month" style="color:var(--blue);font-weight:700;">6개월</span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" style="width:100%;background:var(--blue);">
-                  <span class="progress-val">635만원</span>
-                </div>
-              </div>
-              <span class="progress-cum" style="color:var(--blue);font-weight:700;">3,175만원</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- 월 손익 내역 요약 -->
-        <div class="tbl-card">
-          <div class="tbl-head">
-            <span class="tbl-head-title">월 635만원 순이익 산출 내역</span>
-            <span class="tbl-head-badge">방식 C · 엔터프라이즈 기준</span>
-          </div>
-          <div class="tbl-col-head" style="grid-template-columns:2fr 1.2fr 2.3fr;">
-            <span class="col-label">항목</span>
-            <span class="col-label right">금액</span>
-            <span class="col-label" style="padding-left:16px;">산출 근거</span>
-          </div>
-          <div class="tbl-row" style="grid-template-columns:2fr 1.2fr 2.3fr;">
-            <span class="tbl-item">서비스 비용 (월 정액)</span>
-            <span class="tbl-num" style="color:#dc2626;">-165만원</span>
-            <span class="tbl-basis">엔터프라이즈 특별계약가</span>
-          </div>
-          <div class="tbl-row" style="grid-template-columns:2fr 1.2fr 2.3fr;">
-            <span class="tbl-item">회원권 인상 + 이탈감소 수익</span>
-            <span class="tbl-num">+300만원</span>
-            <span class="tbl-basis">500명 × 1만원 × 절반 적용</span>
-          </div>
-          <div class="tbl-row" style="grid-template-columns:2fr 1.2fr 2.3fr;">
-            <span class="tbl-item">옵션 판매 수익 (절반 판매)</span>
-            <span class="tbl-num">+500만원</span>
-            <span class="tbl-basis">500잔 ÷ 10 × 2만원</span>
-          </div>
-          <div class="tbl-row result" style="grid-template-columns:2fr 1.2fr 2.3fr;">
-            <span class="tbl-item">월 순이익</span>
-            <span class="tbl-num">+635만원</span>
-            <span class="tbl-basis">6개월 누적 → 3,175만원</span>
-          </div>
-        </div>
-
-        <!-- 클로징 배너 -->
-        <div class="conclusion">
-          <div class="conclusion-text">
-            <span class="conclusion-label">Final · 최종 정리</span>
-            <span class="conclusion-desc">기기 590만원 투자 → 2개월 회수 → 이후 매월 순수익</span>
-          </div>
-          <div class="conclusion-kpis">
-            <div class="conclusion-kpi">
-              <span class="conclusion-kpi-label">6개월 누적</span>
-              <span class="conclusion-kpi-value">3,175<span style="font-size:.38em;font-weight:500;">만원</span></span>
-            </div>
-            <div class="conclusion-divider"></div>
-            <div class="conclusion-kpi">
-              <span class="conclusion-kpi-label">회수 기간</span>
-              <span class="conclusion-kpi-value">2<span style="font-size:.5em;font-weight:500;">개월</span></span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
 <!-- ── 네비게이션 ── -->
 <button class="nav-btn nav-prev" onclick="prevSlide()">← 이전</button>
 <button class="nav-btn nav-next" onclick="nextSlide()">다음 →</button>
@@ -753,13 +645,12 @@
   <div class="dot active" onclick="showSlide(1)"></div>
   <div class="dot" onclick="showSlide(2)"></div>
   <div class="dot" onclick="showSlide(3)"></div>
-  <div class="dot" onclick="showSlide(4)"></div>
 </div>
-<div class="page-num" id="pageNum">1 / 4</div>
+<div class="page-num" id="pageNum">1 / 3</div>
 
 <script>
   let current = 1;
-  const total = 4;
+  const total = 3;
 
   // URL 쿼리 파라미터로 초기 슬라이드 지정 (?s=2, ?s=3 ...)
   const initSlide = parseInt(new URLSearchParams(location.search).get('s')) || 1;
